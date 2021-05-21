@@ -15,6 +15,8 @@ import Usuarios.*;
 public class ListaCursos {
     NodoCurso primero;
     NodoCurso ultimo;
+    String FORMATO;
+    
 //    String nombre;
 //    String semestre;
 //    String creditos;
@@ -72,7 +74,7 @@ public class ListaCursos {
         actual=primero;
         do{
             if(actual.id==Id_modificar){
-                System.out.println("SE ENCONTRO EL Usuario "+Id_modificar);
+                System.out.println("SE ENCONTRO EL CURSO "+Id_modificar);
                 
                 actual.id=newId;
                 actual.nombre=nombre;
@@ -119,10 +121,42 @@ public class ListaCursos {
         NodoCurso actual= new NodoCurso();
         actual=primero;
         do{
-            System.out.println("ID "+actual.id+" Nombre: "+actual.nombre+" Password "+actual.semestre+" Tipo "+actual.creditos);
+            System.out.println("ID "+actual.id+" Nombre: "+actual.nombre+" SEMESTRE "+actual.semestre+" CREDITOS "+actual.creditos);
             actual=actual.siguiente;
         }while(actual!= primero);
         
+    }
+    
+    
+    public void formato_grafica(){
+        FORMATO="";
+        NodoCurso actual= new NodoCurso();
+        actual=primero;
+        do{
+            
+            System.out.println(actual.id);
+            FORMATO+="\n";
+            String a="\"CURSO: "+actual.id+"\nNombre: "+actual.nombre+"\nSEMESTRE "+actual.semestre+"\nCREDITOS "+actual.creditos+"\"";
+            String b="\"CURSO: "+actual.siguiente.id+"\nNombre: "+actual.siguiente.nombre+"\nSEMESTRE "+actual.siguiente.semestre+"\nCREDITOS "+actual.siguiente.creditos+"\"";
+            FORMATO+=a+"->"+b+";\n";
+            FORMATO+=b+"->"+a+";\n";
+            System.out.println(FORMATO);    
+            
+            actual=actual.siguiente;
+            
+        }while(actual!= primero);
+        System.out.println(FORMATO);
+    
+    }
+    
+    
+
+    public String getFORMATO() {
+        return FORMATO;
+    }
+
+    public void setFORMATO(String FORMATO) {
+        this.FORMATO = FORMATO;
     }
     
     

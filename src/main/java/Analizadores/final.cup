@@ -1,0 +1,107 @@
+/*JAMES GRAMAJO COMPILADORES1 201731172*/
+package Analizadores;
+import java_cup.runtime.Symbol;
+import java_cup.runtime.XMLElement;
+import java.util.ArrayList;
+
+
+
+parser code
+{:
+    //constructor
+	public parser( LexerCup lex){
+	 super(lex);
+	}
+	public void report_error(String message, Object info){
+		System.out.println("\nREPORT ERROR");
+	}
+	public void report_fatal_error(String message, Object info){
+		System.out.println("\nREPORT FATAL");
+	}
+	public void syntax_error(Symbol curl_token){
+		
+
+		System.out.println("\nSE ESPERABA: "+symbl_name_from_id(expected_token_ids().get(0)));
+        System.out.println("syntaxerr: " + symbl_name_from_id(cur_token.sym) +" Columna: "+cur_token.right+" Linea: "+cur_token.left+" Valor:"+cur_token.value);
+	}
+	protected int error_sync_size() {
+        return 1;
+    }
+
+
+:};
+
+terminal ESTUDIANTE, NUMEROS, USUARIO, CATEDRATICO, EDIFICIO, SALON, CURSO, HORARIO, ASIGNAR, COMILLA, COMA, PUNTO_COMA, PARENTESIS_ABRE, PARENTESIS_CIERRA, TEXTO, COLABORADOR;
+
+non terminal estado_inicial, parametros, usuario, estudiante, catedratico, edificio, salon, curso, horario, asignar, student_colab;
+
+start with estado_inicial;
+
+estado_inicial::=
+	parametros
+
+	
+;
+parametros::=
+	estudiante parametros
+	| usuario parametros
+	| catedratico parametros
+	| edificio parametros
+	| salon parametros
+	| curso parametros
+	| horario parametros
+	| asignar parametros
+	| estudiante
+	| usuario
+	| catedratico
+	| edificio
+	| salon
+	| curso
+	| horario
+	| asignar
+
+
+;
+estudiante::=
+	ESTUDIANTE PARENTESIS_ABRE NUMEROS COMA COMILLA TEXTO COMILLA COMA COMILLA TEXTO COMILLA  PARENTESIS_CIERRA PUNTO_COMA
+;
+usuario::=
+	USUARIO PARENTESIS_ABRE NUMEROS COMA TEXTO COMA COMILLA TEXTO COMILLA COMA COMILLA TEXTO COMILLA COMA student_colab:r PARENTESIS_CIERRA PUNTO_COMA
+	| USUARIO PARENTESIS_ABRE NUMEROS COMA TEXTO COMA COMILLA TEXTO COMILLA  COMA student_colab:r PARENTESIS_CIERRA PUNTO_COMA
+
+;
+catedratico::=
+	CATEDRATICO PARENTESIS_ABRE NUMEROS COMA COMILLA TEXTO COMILLA COMA COMILLA TEXTO COMILLA PARENTESIS_CIERRA PUNTO_COMA
+
+;
+edificio::=
+	EDIFICIO PARENTESIS_ABRE COMILLA TEXTO COMILLA PARENTESIS_CIERRA PUNTO_COMA
+
+;
+salon::=
+	SALON PARENTESIS_ABRE COMILLA TEXTO COMILLA COMA NUMEROS COMA NUMEROS PARENTESIS_CIERRA PUNTO_COMA
+
+;
+curso::=
+	CURSO PARENTESIS_ABRE NUMEROS COMA COMILLA TEXTO COMILLA COMA NUMEROS COMA NUMEROS PARENTESIS_CIERRA PUNTO_COMA
+
+;
+
+horario::=
+	HORARIO PARENTESIS_ABRE NUMEROS COMA COMILLA TEXTO COMILLA COMA COMILLA TEXTO COMILLA COMA NUMEROS COMA NUMEROS COMA TEXTO COMA NUMEROS PARENTESIS_CIERRA PUNTO_COMA
+
+;
+asignar::=
+	ASIGNAR PARENTESIS_ABRE NUMEROS COMA NUMEROS COMA NUMEROS COMA NUMEROS PARENTESIS_CIERRA PUNTO_COMA
+
+;
+student_colab::=
+	ESTUDIANTE
+	| COLABORADOR 
+;
+
+
+
+
+
+

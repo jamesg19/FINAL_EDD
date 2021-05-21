@@ -10,7 +10,13 @@ package Objetos;
  * 
  * @author James Gramajo 
  */
-public class Colaborador {
-     
+public class Horario {
+    
+    private String id;
+    private String hora;
+    private String dia;
+    private String salon;
+    private String curso;
+    
 
 }

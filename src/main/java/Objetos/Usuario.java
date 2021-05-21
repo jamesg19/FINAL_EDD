@@ -12,15 +12,17 @@ package Objetos;
  */
 public class Usuario {
     private String id;
-    private String nombre;
+    private String cargo;
+    private String usuario;
     private String password;
-    private String tipo;
+    private String rol;
 
-    public Usuario(String id, String nombre, String password, String tipo) {
+    public Usuario(String id, String cargo, String usuario, String password, String rol) {
         this.id = id;
-        this.nombre = nombre;
+        this.cargo = cargo;
+        this.usuario = usuario;
         this.password = password;
-        this.tipo = tipo;
+        this.rol = rol;
     }
 
     public String getId() {
@@ -31,12 +33,20 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getCargo() {
+        return cargo;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getPassword() {
@@ -47,13 +57,15 @@ public class Usuario {
         this.password = password;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getRol() {
+        return rol;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setRol(String rol) {
+        this.rol = rol;
     }
+
+    
     
     
     

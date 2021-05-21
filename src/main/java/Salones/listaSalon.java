@@ -6,6 +6,7 @@
 package Salones;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -32,7 +33,7 @@ public class listaSalon {
         nuevoNodo.edificio = edificio;
         nuevoNodo.salon = salon;
         nuevoNodo.estudiantes = estudiantes;
-
+        System.out.println("Se ingreso el salon "+salon+" en edificio "+edificio);
         if (primero == null) {
             primero = nuevoNodo;
             primero.siguiente = null;
@@ -59,7 +60,7 @@ public class listaSalon {
 //        //return false;
 //    }
 
-    public void eliminarNodo(String salon) {
+    public void eliminarNodo(String edificio, String salon) {
         nodo2 actual = new nodo2();
         nodo2 anterior = new nodo2();
 
@@ -67,8 +68,9 @@ public class listaSalon {
         anterior = null;
 
         while (actual != null) {
-            if (actual.salon == salon) {
+            if (actual.salon.equalsIgnoreCase(salon)) {
                 if (actual == primero) {
+                    JOptionPane.showMessageDialog(null, "Se ha eliminado el Salon: "+salon+" del Edificio: "+edificio);
                     primero = primero.siguiente;
 
                 } else {
@@ -95,20 +97,26 @@ public class listaSalon {
     }
 
     public void verListaImagen() {
+        FORMATO="";
         nodo2 actual = new nodo2();
         actual = primero;
-        String edif = actual.edificio;
-
-        FORMATO += "\n\"Edificio: " + actual.edificio + "\"->\"Salon: " + actual.salon + "\nAlumnos: " + actual.estudiantes + "\";\n";
+        //String edif = actual.edificio;
+        try{
+        if(actual.edificio!=null){
+        FORMATO += "\n\"Edificio: " + actual.edificio + "\"->\"Salon: " + actual.salon + "\nAlumnos: " + actual.estudiantes + "\"; ID="+actual.edificio+"\n";
         while (actual != null) {
             if (actual.siguiente != null) {
                 System.out.println("Salon " + actual.salon);
-                FORMATO += "\"Salon: " + actual.salon + "\nAlumnos: " + actual.estudiantes + "\"->\"Salon: " + actual.siguiente.salon + "\nAlumnos: " + actual.siguiente.estudiantes + "\";\n";
+                FORMATO += "\"Salon: " + actual.salon + "\nAlumnos: " + actual.estudiantes + "\"->\"Salon: " + actual.siguiente.salon + "\nAlumnos: " + actual.siguiente.estudiantes + "\"; ID="+actual.edificio+"\n";
                 actual = actual.siguiente;
             } else {
                 //FORMATO+="\"Salon: "+actual.salon+"\nAlumnos: "+actual.estudiantes+"\"->";
                 actual = actual.siguiente;
             }
+        }
+        }
+        } catch(Exception e){
+            
         }
     }
 

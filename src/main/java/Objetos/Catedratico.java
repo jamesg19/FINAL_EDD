@@ -10,12 +10,12 @@ package Objetos;
  * 
  * @author James Gramajo 
  */
-public class Estudiante {
+public class Catedratico {
     private int id;
     private String nombre;
     private String direccion;
 
-    public Estudiante(int id, String nombre, String direccion) {
+    public Catedratico(int id, String nombre, String direccion) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -45,10 +45,6 @@ public class Estudiante {
         this.direccion = direccion;
     }
     
-    
-    
-    
-    
-    
+
 
 }
