@@ -3,11 +3,30 @@ package Analizadores;
 import java_cup.runtime.Symbol;
 import java_cup.runtime.XMLElement;
 import java.util.ArrayList;
-
+import Objetos.*;
 
 
 parser code
 {:
+	ArrayList<Usuario> lstUsuario = new ArrayList();
+	ArrayList<Catedratico> lstCatedratico = new ArrayList();
+	ArrayList<Curso> lstCurso = new ArrayList();
+	ArrayList<Edificio> lstEdificio = new ArrayList();
+	ArrayList<Estudiante> lstEstudiante = new ArrayList();
+	ArrayList<Horario> lstHorario = new ArrayList();
+	ArrayList<Salon> lstSalon = new ArrayList();
+
+
+	Usuario usuario;
+	Catedratico catedratico;
+	Curso curso;
+	Edificio edificio;
+	Estudiante estudiante;
+	Horario horario;
+	Salon salon;
+	
+
+
     //constructor
 	public parser( LexerCup lex){
 	 super(lex);
@@ -26,6 +45,39 @@ parser code
 	}
 	protected int error_sync_size() {
         return 1;
+    }
+
+	public ArrayList<Usuario> getLstUsuario() {
+        return lstUsuario;
+    }
+
+    public ArrayList<Catedratico> getLstCatedratico() {
+        return lstCatedratico;
+    }
+    public ArrayList<Curso> getLstCurso() {
+        return lstCurso;
+    }
+
+    public ArrayList<Edificio> getLstEdificio() {
+        return lstEdificio;
+    }
+
+    public void setLstEdificio(ArrayList<Edificio> lstEdificio) {
+        this.lstEdificio = lstEdificio;
+    }
+
+    public ArrayList<Estudiante> getLstEstudiante() {
+        return lstEstudiante;
+    }
+
+
+    public ArrayList<Horario> getLstHorario() {
+        return lstHorario;
+    }
+
+
+    public ArrayList<Salon> getLstSalon() {
+        return lstSalon;
     }
 
 
@@ -63,33 +115,39 @@ parametros::=
 
 ;
 estudiante::=
-	ESTUDIANTE PARENTESIS_ABRE NUMEROS COMA COMILLA TEXTO COMILLA COMA COMILLA TEXTO COMILLA  PARENTESIS_CIERRA PUNTO_COMA
+	ESTUDIANTE PARENTESIS_ABRE NUMEROS:a COMA COMILLA TEXTO:b COMILLA COMA COMILLA TEXTO:c COMILLA  PARENTESIS_CIERRA PUNTO_COMA
+	{: estudiante = new Estudiante(Integer.parseInt(a.toString()), b.toString(),c.toString());  lstEstudiante.add(estudiante); :}
 ;
 usuario::=
-	USUARIO PARENTESIS_ABRE NUMEROS COMA TEXTO COMA COMILLA TEXTO COMILLA COMA COMILLA TEXTO COMILLA COMA student_colab:r PARENTESIS_CIERRA PUNTO_COMA
-	| USUARIO PARENTESIS_ABRE NUMEROS COMA TEXTO COMA COMILLA TEXTO COMILLA  COMA student_colab:r PARENTESIS_CIERRA PUNTO_COMA
+	USUARIO PARENTESIS_ABRE NUMEROS:a COMA TEXTO:b COMA COMILLA TEXTO:c COMILLA COMA COMILLA TEXTO:d COMILLA COMA student_colab:e PARENTESIS_CIERRA PUNTO_COMA
+	{: usuario = new Usuario(a.toString(),b.toString(), c.toString(),d.toString(),e.toString());  lstUsuario.add(usuario); :}
+	
+	| USUARIO PARENTESIS_ABRE NUMEROS:a COMA TEXTO:b COMA COMILLA TEXTO:c COMILLA  COMA student_colab:d PARENTESIS_CIERRA PUNTO_COMA
+	{: usuario = new Usuario(a.toString(),b.toString(), c.toString(),d.toString()); lstUsuario.add(usuario); :}
 
 ;
 catedratico::=
-	CATEDRATICO PARENTESIS_ABRE NUMEROS COMA COMILLA TEXTO COMILLA COMA COMILLA TEXTO COMILLA PARENTESIS_CIERRA PUNTO_COMA
-
+	CATEDRATICO PARENTESIS_ABRE NUMEROS:a COMA COMILLA TEXTO:b COMILLA COMA COMILLA TEXTO:c COMILLA PARENTESIS_CIERRA PUNTO_COMA
+	{: catedratico = new Catedratico(Integer.parseInt(a.toString()), b.toString(),c.toString()); lstCatedratico.add(catedratico); :}
 ;
 edificio::=
-	EDIFICIO PARENTESIS_ABRE COMILLA TEXTO COMILLA PARENTESIS_CIERRA PUNTO_COMA
+	EDIFICIO PARENTESIS_ABRE COMILLA TEXTO:a COMILLA PARENTESIS_CIERRA PUNTO_COMA
+	{: edificio = new Edificio(a.toString()); lstEdificio.add(edificio); :}
 
 ;
 salon::=
-	SALON PARENTESIS_ABRE COMILLA TEXTO COMILLA COMA NUMEROS COMA NUMEROS PARENTESIS_CIERRA PUNTO_COMA
-
+	SALON PARENTESIS_ABRE COMILLA TEXTO:a COMILLA COMA NUMEROS:b COMA NUMEROS:c PARENTESIS_CIERRA PUNTO_COMA
+	{: salon = new Salon(a.toString(),b.toString(),c.toString()); lstSalon.add(salon); :}
 ;
 curso::=
-	CURSO PARENTESIS_ABRE NUMEROS COMA COMILLA TEXTO COMILLA COMA NUMEROS COMA NUMEROS PARENTESIS_CIERRA PUNTO_COMA
-
+	CURSO PARENTESIS_ABRE NUMEROS:a COMA COMILLA TEXTO:b COMILLA COMA NUMEROS:c COMA NUMEROS:d PARENTESIS_CIERRA PUNTO_COMA
+	{: curso = new Curso(a.toString(),b.toString(),c.toString(), d.toString()); lstCurso.add(curso); :}
 ;
 
 horario::=
-	HORARIO PARENTESIS_ABRE NUMEROS COMA COMILLA TEXTO COMILLA COMA COMILLA TEXTO COMILLA COMA NUMEROS COMA NUMEROS COMA TEXTO COMA NUMEROS PARENTESIS_CIERRA PUNTO_COMA
-
+	HORARIO PARENTESIS_ABRE NUMEROS:a COMA COMILLA TEXTO:b COMILLA COMA COMILLA TEXTO:c COMILLA COMA NUMEROS:d COMA NUMEROS:e COMA TEXTO:f COMA NUMEROS:g PARENTESIS_CIERRA PUNTO_COMA
+	//String id, String horario, String dia, String curso, int salon, String edificio, int catedratico
+	{: horario= new Horario(Integer.parseInt(a.toString()),b.toString(),c.toString(),d.toString(),Integer.parseInt(e.toString()),f.toString(),Integer.parseInt(g.toString())); lstHorario.add(horario); :}
 ;
 asignar::=
 	ASIGNAR PARENTESIS_ABRE NUMEROS COMA NUMEROS COMA NUMEROS COMA NUMEROS PARENTESIS_CIERRA PUNTO_COMA

@@ -19,25 +19,25 @@ public class ArbolB {
     int t;
     ArrayList<String> data = new ArrayList();
     String[] dataa = new String[1000];;
-    public static void main(String[] args) {
-        
-        ArbolB arbol = new ArbolB(3);
-        arbol.insertar(1,"7a 10 AM","LUNES",777+"",105+"","T1",12345+"");
-        arbol.insertar(2,"7a 10 AM","MIERCOLES",777+"",105+"","T2",12345+"");
-        arbol.insertar(3,"7a 90 AM","JUEVES",777+"",105+"","T3",12345+"");
-        arbol.insertar(4,"12-13 AM","MARTES",777+"",105+"","T4",12345+"");
-        arbol.insertar(5,"10-10 AM","MIERCOLES",777+"",105+"","T5",12345+"");
-        arbol.insertar(6,"1-2 AM","JUEVESS",777+"",105+"","T6",12345+"");
-        arbol.insertar(7,"2-4 AM","MARTES",777+"",105+"","T7",12345+"");
-
-        arbol.buscarNodoPorClave(100);
-        arbol.showBTree();
-        //arbol.eliminar(101);
-        for (int i = 0; i < 10; i++) {
-            //System.out.println("  ");
-        }
-        //arbol.showBTree();
-    }
+//    public static void main(String[] args) {
+//        
+//        ArbolB arbol = new ArbolB(3);
+//        arbol.insertar(1,"7a 10 AM","LUNES",777+"",105+"","T1",12345+"");
+//        arbol.insertar(2,"7a 10 AM","MIERCOLES",777+"",105+"","T2",12345+"");
+//        arbol.insertar(3,"7a 90 AM","JUEVES",777+"",105+"","T3",12345+"");
+//        arbol.insertar(4,"12-13 AM","MARTES",777+"",105+"","T4",12345+"");
+//        arbol.insertar(5,"10-10 AM","MIERCOLES",777+"",105+"","T5",12345+"");
+//        arbol.insertar(6,"1-2 AM","JUEVESS",777+"",105+"","T6",12345+"");
+//        arbol.insertar(7,"2-4 AM","MARTES",777+"",105+"","T7",12345+"");
+//
+//        arbol.buscarNodoPorClave(100);
+//        arbol.showBTree();
+//        //arbol.eliminar(101);
+//        for (int i = 0; i < 10; i++) {
+//            //System.out.println("  ");
+//        }
+//        //arbol.showBTree();
+//    }
 
     //Constructor
     public ArbolB(int t) {
@@ -519,7 +519,7 @@ public class ArbolB {
     }
 
     public class NodoArbolB<T> {
-        String[] dataa;
+        String[] dataa = new String[1000];;
         ArrayList<String> dat = new ArrayList();
         int n; //numero de claves almacenadas en el nodo
         boolean leaf; //Si el nodo es hoja (nodo hoja=true; nodo interno=false)
@@ -547,13 +547,7 @@ public class ArbolB {
 
         public void imprimir() {
             System.out.print("[");
-            
-            for(int j=0;j<dat.size();j++){
-                System.out.println(dat.get(j)+" IIIIIII:"+j);
-            }
-            
-            
-            
+
             for (int i = 0; i < n; i++) {
                 try{
                 if (i < n - 1) {
@@ -658,6 +652,14 @@ public class ArbolB {
 
         public void setDat(ArrayList<String> dat) {
             this.dat = dat;
+        }
+
+        public String[] getDataa() {
+            return dataa;
+        }
+
+        public void setDataa(String[] dataa) {
+            this.dataa = dataa;
         }
         
 

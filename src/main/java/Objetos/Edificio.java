@@ -10,7 +10,7 @@ package Objetos;
  * 
  * @author James Gramajo 
  */
-public class Edificio {
+public class Edificio  {
     private String nombre;
 
     public Edificio(String nombre) {

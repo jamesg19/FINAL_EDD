@@ -5,6 +5,7 @@
  */
 package com.mycompany.finaledd;
 
+import ArbolB.ArbolB;
 import Archivo.GestorArchivo;
 import Catedratico_AVL.ArbolAVLu;
 import Cursos.*;
@@ -17,7 +18,7 @@ import javax.swing.JOptionPane;
  * @author James Gramajo
  */
 public class Logica {
-
+    ArbolB arbol = new ArbolB(3);
     ArbolAVLu avl = new ArbolAVLu();
     ListaEdificio edif = new ListaEdificio();
     listaSalon salones = new listaSalon();
@@ -211,6 +212,48 @@ public class Logica {
         gst.GuardarArchivoDOT(formato, "CURSOS.txt");
         gst.generar("CURSOS.txt", "CURSOS.png");
     }
+    public void Agregar_Horario(){
+        
+        int id = Integer.parseInt(JOptionPane.showInputDialog("Ingresa el ID del HORARIO:\n"));
+        String horario=JOptionPane.showInputDialog("Ingresa LA HORA del HORARIO:\n");
+        String dia=JOptionPane.showInputDialog("Ingresa el DIA del CURSO:\n");
+        String curso=JOptionPane.showInputDialog("Ingresa el CURSO del CURSO:\n");
+        String salon=JOptionPane.showInputDialog("Ingresa el SALON del CURSO:\n");
+        String edificio=JOptionPane.showInputDialog("Ingresa el EDIFICIO del CURSO:\n");
+        String catedratico=JOptionPane.showInputDialog("Ingresa el CATEDRATICO del CURSO:\n");
+        try{
+        arbol.insertar(id, horario, dia, curso, salon, edificio, catedratico);
+        } catch(Exception e){
+            
+        }
+//        arbol.insertar(1,"7a 10 AM","LUNES",777+"",105+"","T1",12345+"");
+    }
+    public void Mostrar_arbolB(){
+        arbol.showBTree();
+    }
+    
+    
+    public int pedirNUmero(String a){
+        int id=0;
+        try{
+        id = Integer.parseInt(JOptionPane.showInputDialog("Ingresa el ID del "+a+":\n"));
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null,"EL CARACTER ES INCORRECTO DEBE SER NUMERICO");
+            pedirIDCURSO();
+        }
+        return id;
+    }
+    
+    
+    public void CargaMasiva(){
+        
+    }
+    
+    
+    
+    
+    
+    
 
 
 

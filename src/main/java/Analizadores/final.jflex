@@ -3,6 +3,7 @@ package Analizadores;
 import static Analizadores.sym.*;
 import java_cup.runtime.Symbol;
 import java.util.ArrayList;
+import Objetos.*;
 %%
 %class LexerCup
 %type java_cup.runtime.Symbol

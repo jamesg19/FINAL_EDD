@@ -13,6 +13,7 @@ import Salones.*;
 import Salones.listaSalon;
 import Usuarios.ListaCD;
 import Ventanas.FRAME;
+import Ventanas.Form;
 import java.io.StringReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,8 +31,10 @@ public class Main {
 
 //        Logica log= new Logica();
 //        log.generarEdificioSalon();
-            FRAME fr= new FRAME();
-            fr.setVisible(true);
+////////            FRAME fr= new FRAME();
+////////            fr.setVisible(true);
+        Form form = new Form();
+        form.setVisible(true);
 //        try {
 //            String entrada = "Estudiante(200145785, \"Fernando Marroquín\", \"Mixco\");\n"
 //                    + "Estudiante(200745781, \"Alfonso Antonio\", \"Guatemala\");\n"
@@ -84,5 +87,5 @@ public class Main {
 //        }
 
     }
-
+    
 }

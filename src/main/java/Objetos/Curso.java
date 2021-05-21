@@ -10,7 +10,7 @@ package Objetos;
  * 
  * @author James Gramajo 
  */
-public class Curso {
+public class Curso  {
     
     private String id;
     private String nombre;
